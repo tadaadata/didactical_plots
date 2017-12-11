@@ -4,7 +4,7 @@ hell   <- round(cor(filter(qm, alter <= 28)$alter,
 
 qm %>%
   mutate(
-    alter_z = z(alter),
+    alter_z = tadaatoolbox::z(alter),
     Modellierbarkeit = ifelse(alter_z < 2, "fitted", "Ausreißer")
   ) %>%
   ggplot(aes(x = alter, y = beziehungen, alpha = Modellierbarkeit,
