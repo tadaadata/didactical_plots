@@ -24,9 +24,8 @@ qm %>%
   scale_alpha_manual(values = c(.8, .3)) +
   scale_shape_manual(values = c(13, 19)) +
   scale_color_manual(values = c("dark red", "dark gray")) +
-  labs(title = "Modellierbarkeit des Zusammenhangs\nzw. Alter und Beziehungsanzahl",
+  labs(title = "Modellierbarkeit des Zusammenhangs zw. Alter und Beziehungsanzahl",
        subtitle = paste0(
-         "Regressionsgerade mit Ausreißern\n(dunkel; r = ", dunkel,
+         "Regressionsgerade mit Ausreißern (dunkel; r = ", dunkel,
          ") und ohne Ausreißer (hell; r = ", hell, ")"),
-       x = "Alter", y = "Beziehungen") +
-  theme(legend.position = "top")
+       x = "Alter", y = "Beziehungen")
