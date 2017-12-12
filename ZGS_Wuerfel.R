@@ -38,7 +38,7 @@ ggplot(NULL, aes(x = w6_2)) +
        subtitle = "bei 2.000 Würfen",
        x = "Kombination (reihenweise)", y = "Anzahl") +
   theme_minimal() +
-  theme(axis.text.x = element_text(size = rel(2), family = "FreeSerif"))
+  theme(axis.text.x = element_text(size = rel(2), family = "FreeSerif", lineheight = .5))
 
 # Neat but unused bonus feature
 diceglyph <- function(..., paste = TRUE) {
