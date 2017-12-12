@@ -36,3 +36,18 @@ ggplot(NULL, aes(x = w6_2)) +
        x = "Kombination (reihenweise)", y = "Anzahl") +
   theme_minimal() +
   theme(axis.text.x = element_text(size = rel(2), family = "FreeSerif"))
+
+# Neat but unused bonus feature
+diceglyph <- function(...) {
+  sym <- c(
+    "\u2680",
+    "\u2681",
+    "\u2682",
+    "\u2683",
+    "\u2684",
+    "\u2685"
+  )
+  sym[c(...)]
+}
+
+# e.g. diceglyph(2, 3, 6, 2)
