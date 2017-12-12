@@ -1,7 +1,9 @@
 # I think I made this to replicate the results of a paper about CIs
 # and not for actual lecturing, but meh, doesn't hurt to put it here
 
-library(tidyverse)
+library(purrr)
+library(dplyr)
+library(ggplot2)
 
 stuff <- 1:200 %>%
   map(~rnorm(2, 100, 15))
@@ -33,4 +35,6 @@ ggplot(df, aes(y = mu, x = n, ymin = lo, ymax = hi, color = hit)) +
     y = expression(mu), x = "Sample", color = "Contains true mean"
   ) +
   scale_colour_manual(values = c("#cc0000", "#00e600")) +
-  coord_flip()
+  coord_flip() +
+  theme(legend.position = "bottom")
+
