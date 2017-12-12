@@ -28,6 +28,8 @@ dice <- c(
   "12" = paste0(d6, d6)
 )
 
+rm(d1, d2, d3, d4, d5, d6)
+
 # Expected relative frequencies:
 c(1:6,5:1) / sum(c(1:6,5:1))
 
