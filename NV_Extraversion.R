@@ -1,3 +1,5 @@
+library(ggplot2)
+
 # label_norm shamelessly ripped off from Lukas Burk (jemus42)
 label_norm <- function(x) {
   if (length(x) > 1) {
