@@ -1,3 +1,5 @@
+library(ggplot2)
+
 zwei <- c(rnorm(100, 30, 5), rnorm(100, 70, 15))
 
 ggplot() +

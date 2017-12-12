@@ -1,3 +1,8 @@
+library(ggplot2)
+library(dplyr)
+
+qm <- readRDS(url("https://data.tadaa-data.de/qm_survey_ss2017.rds"))
+
 dunkel <- round(cor(qm$alter, qm$beziehungen), 2)
 hell   <- round(cor(filter(qm, alter <= 28)$alter,
                     filter(qm, alter <= 28)$beziehungen), 2)
@@ -19,9 +24,9 @@ qm %>%
   scale_alpha_manual(values = c(.8, .3)) +
   scale_shape_manual(values = c(13, 19)) +
   scale_color_manual(values = c("dark red", "dark gray")) +
-  labs(title = "Modellierbarkeit des Zusammenhangs zw. Alter und Beziehungsanzahl",
+  labs(title = "Modellierbarkeit des Zusammenhangs\nzw. Alter und Beziehungsanzahl",
        subtitle = paste0(
-         "Regressionsgerade mit Ausreißern (dunkel; r = ", dunkel,
-         ") und ohne Ausreißer (hell; r = ", hell,
-         ")"),
-       x = "Alter", y = "Beziehungen")
+         "Regressionsgerade mit Ausreißern\n(dunkel; r = ", dunkel,
+         ") und ohne Ausreißer (hell; r = ", hell, ")"),
+       x = "Alter", y = "Beziehungen") +
+  theme(legend.position = "top")
