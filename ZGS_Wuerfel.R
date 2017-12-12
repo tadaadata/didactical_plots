@@ -28,6 +28,9 @@ dice <- c(
   "12" = paste0(d6, d6)
 )
 
+# Expected relative frequencies:
+c(1:6,5:1) / sum(c(1:6,5:1))
+
 ggplot(NULL, aes(x = w6_2)) +
   geom_histogram(bins = 11, color = "white", fill = "#1aadff", alpha = .5) +
   scale_x_continuous(breaks = 2:12, labels = dice) +
@@ -38,7 +41,7 @@ ggplot(NULL, aes(x = w6_2)) +
   theme(axis.text.x = element_text(size = rel(2), family = "FreeSerif"))
 
 # Neat but unused bonus feature
-diceglyph <- function(...) {
+diceglyph <- function(..., paste = TRUE) {
   sym <- c(
     "\u2680",
     "\u2681",
@@ -47,7 +50,11 @@ diceglyph <- function(...) {
     "\u2684",
     "\u2685"
   )
-  sym[c(...)]
+  if (paste) {
+    paste0(sym[c(...)], collapse = "")
+  } else {
+    sym[c(...)]
+  }
 }
 
 # e.g. diceglyph(2, 3, 6, 2)
