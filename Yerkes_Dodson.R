@@ -1,5 +1,6 @@
 library(ggplot2)
 
+set.seed(0)
 p <- .5
 q <- seq_len(100)
 y <- (1200 - p * (q - 50)^2) / 12
