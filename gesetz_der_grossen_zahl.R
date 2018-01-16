@@ -1,6 +1,7 @@
 library(purrr)
 library(dplyr)
 library(ggplot2)
+library(scales)
 
 map(seq_len(1200), function(x) {
   wurf <- sample(c(1:6), x, replace = T)
@@ -20,4 +21,4 @@ map(seq_len(1200), function(x) {
          y = "rel. Häufigkeit", x = "Würfe") +
     annotate("label", x = 1000, y = .25, label = "erwartete Häufigkeit", alpha = .8,
              fill = "red", color = "white", size = 4, label.padding = unit(.35, "lines")) +
-    scale_x_continuous(breaks = scales::pretty_breaks())
+    scale_x_continuous(breaks = pretty_breaks())
