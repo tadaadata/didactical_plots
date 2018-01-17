@@ -62,7 +62,7 @@ ggplot(n, aes(x, y)) +
   geom_smooth(method = lm, se = F) +
   geom_point(color = "orange", size = 2) +
   geom_label(data = fin, y = 12, x = 10, label = fin$term) +
-  geom_label(data = fin, y = 4, x = 12, label = paste("R^2 == ", fin$r.sq), parse = T) +
+  geom_label(data = fin, y = 4, x = 12, label = paste("R^2 %~~% ", fin$r.sq), parse = T) +
   scale_y_continuous(breaks = pretty_breaks()) +
   scale_x_continuous(breaks = pretty_breaks()) +
   labs(title = "Anscombe's Quartet", x = NULL, y = NULL) +
