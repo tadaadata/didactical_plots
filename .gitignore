@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-data/
+data/qm-survey-2017-R.rds
 .Rbuildignore
