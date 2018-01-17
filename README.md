@@ -318,16 +318,6 @@ Anscombes Quartet
 
 ``` r
 library(readr)
-```
-
-    ## 
-    ## Attaching package: 'readr'
-
-    ## The following object is masked from 'package:scales':
-    ## 
-    ##     col_factor
-
-``` r
 library(dplyr)
 library(tidyr)
 library(broom)
@@ -340,26 +330,13 @@ library(scales)
 # https://en.wikipedia.org/wiki/Anscombe's_quartet#Data
 anscombe <- read_delim("./data/ansc.txt",
                        "\t", escape_double = FALSE, col_names = FALSE,
-                       trim_ws = TRUE) %>%
+                       trim_ws = TRUE, col_types = cols()) %>%
   rename(I.x   = X1, I.y   = X2,
          II.x  = X3, II.y  = X4,
          III.x = X5, III.y = X6,
          IV.x  = X7, IV.y  = X8)
-```
 
-    ## Parsed with column specification:
-    ## cols(
-    ##   X1 = col_double(),
-    ##   X2 = col_double(),
-    ##   X3 = col_double(),
-    ##   X4 = col_double(),
-    ##   X5 = col_double(),
-    ##   X6 = col_double(),
-    ##   X7 = col_double(),
-    ##   X8 = col_double()
-    ## )
 
-``` r
 # restructure data ----
 n <- tibble(
   qrt = c(rep("I", 11), rep("II", 11), rep("III", 11), rep("IV", 11)),
