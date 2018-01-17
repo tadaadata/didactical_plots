@@ -398,16 +398,7 @@ Simpson's Paradox
 library(dplyr)
 library(ggplot2)
 library(MASS)
-```
 
-    ## 
-    ## Attaching package: 'MASS'
-
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     select
-
-``` r
 # Via https://simplystatistics.org/2017/08/08/code-for-my-educational-gifs/
 ## simulate data
 N     <- 100
