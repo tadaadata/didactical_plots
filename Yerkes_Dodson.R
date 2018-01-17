@@ -1,5 +1,6 @@
 library(ggplot2)
 
+set.seed(0)
 p <- .5
 q <- seq_len(100)
 y <- (1200 - p * (q - 50)^2) / 12
@@ -12,7 +13,7 @@ rsq_poly <- round(summary(lm(y_noise ~ poly(q, 2)))$r.squared, 3)
 ggplot(NULL, aes(q, y_noise)) +
   geom_jitter(height = 0, width = 0, shape = 21, size = 2) +
   geom_smooth(method = lm, color = "#e60000", se = FALSE, linetype = "dashed") +
-  geom_smooth(method = loess, color = "#00cc44", se = FALSE) +
+  geom_smooth(method = lm, formula = y ~ poly(x, 2), color = "#00cc44", se = FALSE) +
   geom_label(aes(x = 37.5, y = 65), color = "#e60000", size = 5,
              label = paste("linear:\nR² =", rsq_lm)) +
   geom_label(aes(x = 70, y = 60), color = "#009933", size = 5,
