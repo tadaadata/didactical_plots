@@ -45,11 +45,11 @@ ggplot(data = data, aes(x = groups, y = y)) +
         axis.ticks.y = element_blank())
 ```
 
-## Yerkes-Dotson Gesetz
+## Yerkes-Dodson Gesetz
 
 ...und nichtlineare Zusammenhänge im allgemeinen.
 
-```{r yerkes_dotson}
+```{r yerkes_dodson}
 p <- .5
 q <- seq_len(100)
 y <- (1200 - p * (q - 50)^2) / 12
