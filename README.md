@@ -1,7 +1,7 @@
 Showcase
 ================
 Tadaa!
-2018-01-17
+2018-04-16
 
 Here are a few plots useful for teaching.
 
@@ -29,7 +29,56 @@ ggplot(data = data, aes(x = groups, y = y)) +
 
 ![](README_files/figure-markdown_github/eta_groupmeans-1.png)
 
-Yerkes-Dotson Gesetz
+*Literary Digest* Poll Debacle
+------------------------------
+
+``` r
+litdig <- readRDS("./data/literary_digest.rds")
+
+ggplot() +
+  geom_polygon(data = litdig, aes(x = long, y = lat, group = group, fill = winner_ld,
+                                 alpha = ifelse(AML_ld > FDR_ld, AML_p_ld, FDR_p_ld))) +
+  geom_path(data = litdig, aes(x = long, y = lat, group = group),
+            color = "black", size = 0.1) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_alpha_continuous(range = c(0.3, 0.9), labels = scales::percent_format()) +
+  scale_x_continuous(labels = NULL, breaks = NULL) +
+  scale_y_continuous(labels = NULL, breaks = NULL) +
+  coord_map() +
+  labs(title = "Das Literary Digest Umfrage-Desaster von 1936",
+       subtitle = "Die Schätzung von Literary Digest",
+       x = NULL, y = NULL, alpha = "Stimmanteil",
+       fill = "Sieger", caption = "n = ca. 2.3 Mio") +
+  hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
+```
+
+    ## Warning: Removed 1 rows containing missing values (geom_path).
+
+![](README_files/figure-markdown_github/litdig-1.png)
+
+``` r
+ggplot() +
+  geom_polygon(data = litdig, aes(x = long, y = lat, group = group, fill = winner_rl,
+                                 alpha = ifelse(AML_rl > FDR_rl, AML_p_rl, FDR_p_rl))) +
+  geom_path(data = litdig, aes(x = long, y = lat, group = group),
+            color = "black", size = 0.1) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_alpha_continuous(range = c(0.3, 0.9), labels = scales::percent_format()) +
+  scale_x_continuous(labels = NULL, breaks = NULL) +
+  scale_y_continuous(labels = NULL, breaks = NULL) +
+  coord_map() +
+  labs(title = "Das Literary Digest Umfrage-Desaster von 1936",
+       subtitle = "Der tatsächliche Wahlausgang",
+       x = NULL, y = NULL, alpha = "Stimmanteil",
+       fill = "Sieger", caption = "n = ca. 44.4 Mio") +
+  hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
+```
+
+    ## Warning: Removed 1 rows containing missing values (geom_path).
+
+![](README_files/figure-markdown_github/litdig-2.png)
+
+Yerkes-Dodson Gesetz
 --------------------
 
 ...und nichtlineare Zusammenhänge im allgemeinen.
@@ -64,7 +113,7 @@ ggplot(NULL, aes(q, y_noise)) +
   theme_classic()
 ```
 
-![](README_files/figure-markdown_github/yerkes_dotson-1.png)
+![](README_files/figure-markdown_github/yerkes_dodson-1.png)
 
 Gesetz der Großen Zahl
 ----------------------
@@ -248,9 +297,8 @@ rm(d1, d2, d3, d4, d5, d6)
 c(1:6,5:1) / sum(c(1:6,5:1))
 ```
 
-    ##  [1] 0.0277777777778 0.0555555555556 0.0833333333333 0.1111111111111
-    ##  [5] 0.1388888888889 0.1666666666667 0.1388888888889 0.1111111111111
-    ##  [9] 0.0833333333333 0.0555555555556 0.0277777777778
+    ##  [1] 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667
+    ##  [7] 0.13888889 0.11111111 0.08333333 0.05555556 0.02777778
 
 ``` r
 ggplot(NULL, aes(x = w6_2)) +
