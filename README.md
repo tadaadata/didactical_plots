@@ -71,12 +71,16 @@ ggplot() +
        subtitle = "Der tatsächliche Wahlausgang",
        x = NULL, y = NULL, alpha = "Stimmanteil",
        fill = "Sieger", caption = "n = ca. 44.4 Mio") +
-  hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
+  theme_classic()
 ```
 
     ## Warning: Removed 1 rows containing missing values (geom_path).
 
 ![](README_files/figure-markdown_github/litdig-2.png)
+
+``` r
+  # hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
+```
 
 NHST-Vokabeln
 -------------
@@ -115,10 +119,14 @@ ggplot(nr, aes(x, y)) +
   labs(title = "Vokabular des Nullhypothesen-Signifikanztests (NHST)",
        subtitle = "am Beispiel der Standardnormalverteilung",
        x = "z-Wert", y = "Dichte") +
-  hrbrthemes::theme_ipsum_tw(grid = FALSE)
+  theme_classic()
 ```
 
 ![](README_files/figure-markdown_github/nhst_voc-1.png)
+
+``` r
+  # hrbrthemes::theme_ipsum_tw(grid = FALSE)
+```
 
 Yerkes-Dodson Gesetz
 --------------------
