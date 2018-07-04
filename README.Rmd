@@ -502,3 +502,28 @@ sim_p2
 sim_p3
 ```
 
+
+# For the lulz
+
+# Fishy
+
+```{r fishy, message=FALSE, error=FALSE}
+library(ggplot2)
+library(emoGG)
+library(dplyr)
+library(tadaatoolbox)
+library(viridis)
+
+ngo %>%
+  group_by(leistung, stunzahl) %>%
+  tally() %>%
+  ggplot(aes(x = leistung, y = stunzahl, size = n, fill = n)) +
+  geom_point(color = "black", shape = 21) +
+  add_emoji(emoji = "1f41f", x = 2.5, y = 25, ysize = 3) +
+  add_emoji(emoji = "1f41f", x = 6.5, y = 25, ysize = 3) +
+  add_emoji(emoji = "1f42c", x = 5, y = 20, ysize = 3) +
+  scale_fill_viridis(direction = 1, option = "C") +
+  scale_size(guide = F) +
+  theme_minimal()
+```
+

@@ -1,12 +1,11 @@
 Showcase
 ================
-Tadaa!
-2018-04-23
+Tadaa\!
+2018-07-04
 
 Here are a few plots useful for teaching.
 
-*η*<sup>2</sup>: Group & grand mean
------------------------------------
+## \(\eta^2\): Group & grand mean
 
 ``` r
 library(ggplot2)
@@ -27,10 +26,9 @@ ggplot(data = data, aes(x = groups, y = y)) +
         axis.ticks.y = element_blank())
 ```
 
-![](README_files/figure-markdown_github/eta_groupmeans-1.png)
+![](README_files/figure-gfm/eta_groupmeans-1.png)<!-- -->
 
-*Literary Digest* Poll Debacle
-------------------------------
+## *Literary Digest* Poll Debacle
 
 ``` r
 litdig <- readRDS("./data/literary_digest.rds")
@@ -54,7 +52,7 @@ ggplot() +
 
     ## Warning: Removed 1 rows containing missing values (geom_path).
 
-![](README_files/figure-markdown_github/litdig-1.png)
+![](README_files/figure-gfm/litdig-1.png)<!-- -->
 
 ``` r
 ggplot() +
@@ -76,14 +74,13 @@ ggplot() +
 
     ## Warning: Removed 1 rows containing missing values (geom_path).
 
-![](README_files/figure-markdown_github/litdig-2.png)
+![](README_files/figure-gfm/litdig-2.png)<!-- -->
 
 ``` r
   # hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
 ```
 
-NHST-Vokabeln
--------------
+## NHST-Vokabeln
 
 ``` r
 nr <- tibble(
@@ -122,16 +119,15 @@ ggplot(nr, aes(x, y)) +
   theme_classic()
 ```
 
-![](README_files/figure-markdown_github/nhst_voc-1.png)
+![](README_files/figure-gfm/nhst_voc-1.png)<!-- -->
 
 ``` r
   # hrbrthemes::theme_ipsum_tw(grid = FALSE)
 ```
 
-Yerkes-Dodson Gesetz
---------------------
+## Yerkes-Dodson Gesetz
 
-...und nichtlineare Zusammenhänge im allgemeinen.
+…und nichtlineare Zusammenhänge im allgemeinen.
 
 ``` r
 p <- .5
@@ -163,10 +159,9 @@ ggplot(NULL, aes(q, y_noise)) +
   theme_classic()
 ```
 
-![](README_files/figure-markdown_github/yerkes_dodson-1.png)
+![](README_files/figure-gfm/yerkes_dodson-1.png)<!-- -->
 
-Gesetz der Großen Zahl
-----------------------
+## Gesetz der Großen Zahl
 
 ``` r
 library(purrr)
@@ -194,10 +189,9 @@ map_dbl(seq_len(1200), function(x) {
     scale_x_continuous(breaks = pretty_breaks())
 ```
 
-![](README_files/figure-markdown_github/gesetz_der_grossen_zahl-1.png)
+![](README_files/figure-gfm/gesetz_der_grossen_zahl-1.png)<!-- -->
 
-Mittelwert und Median
----------------------
+## Mittelwert und Median
 
 Allgemeine Hügeligkeit als solche.
 
@@ -216,10 +210,9 @@ ggplot() +
   labs(x = "Merkmalsausprägung", y = "rel. Häufigkeit")
 ```
 
-![](README_files/figure-markdown_github/mean_median_huegel-1.png)
+![](README_files/figure-gfm/mean_median_huegel-1.png)<!-- -->
 
-Normalverteilung: Extraversion
-------------------------------
+## Normalverteilung: Extraversion
 
 ``` r
 library(ggplot2)
@@ -266,10 +259,9 @@ ggplot(data = NULL, aes(x = -3:3)) +
   theme_classic()
 ```
 
-![](README_files/figure-markdown_github/nv_extraversion-1.png)
+![](README_files/figure-gfm/nv_extraversion-1.png)<!-- -->
 
-Regressionsgerade mit Ausreißern
---------------------------------
+## Regressionsgerade mit Ausreißern
 
 ``` r
 library(ggplot2)
@@ -305,10 +297,9 @@ qm %>%
        x = "Alter", y = "Beziehungen")
 ```
 
-![](README_files/figure-markdown_github/reg_ausreisser-1.png)
+![](README_files/figure-gfm/reg_ausreisser-1.png)<!-- -->
 
-Zentraler Grenzwertsatz: Würfel
--------------------------------
+## Zentraler Grenzwertsatz: Würfel
 
 ``` r
 # Requires FreeSerif Font or alternative font compatible with dice glyphs
@@ -347,8 +338,9 @@ rm(d1, d2, d3, d4, d5, d6)
 c(1:6,5:1) / sum(c(1:6,5:1))
 ```
 
-    ##  [1] 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667
-    ##  [7] 0.13888889 0.11111111 0.08333333 0.05555556 0.02777778
+    ##  [1] 0.027777778 0.055555556 0.083333333 0.111111111 0.138888889
+    ##  [6] 0.166666667 0.138888889 0.111111111 0.083333333 0.055555556
+    ## [11] 0.027777778
 
 ``` r
 ggplot(NULL, aes(x = w6_2)) +
@@ -361,10 +353,9 @@ ggplot(NULL, aes(x = w6_2)) +
   theme(axis.text.x = element_text(size = rel(2), family = "FreeSerif", lineheight = .5))
 ```
 
-![](README_files/figure-markdown_github/zgs_wuerfel-1.png)
+![](README_files/figure-gfm/zgs_wuerfel-1.png)<!-- -->
 
-CIs for days
-------------
+## CIs for days
 
 ``` r
 # I think I made this to replicate the results of a paper about CIs
@@ -409,10 +400,9 @@ ggplot(df, aes(y = mu, x = n, ymin = lo, ymax = hi, color = hit)) +
   theme(legend.position = "bottom")
 ```
 
-![](README_files/figure-markdown_github/cis-1.png)
+![](README_files/figure-gfm/cis-1.png)<!-- -->
 
-Anscombes Quartet
------------------
+## Anscombes Quartet
 
 ``` r
 library(readr)
@@ -486,10 +476,9 @@ ggplot(n, aes(x, y)) +
   theme_bw()
 ```
 
-![](README_files/figure-markdown_github/anscombquart-1.png)
+![](README_files/figure-gfm/anscombquart-1.png)<!-- -->
 
-Simpson's Paradox
------------------
+## Simpson’s Paradox
 
 ``` r
 # Simpsons paradox, in plots
@@ -533,16 +522,42 @@ sim_p3 <- sim_p2 +
 sim_p1
 ```
 
-![](README_files/figure-markdown_github/simpsons_paradox-1.png)
+![](README_files/figure-gfm/simpsons_paradox-1.png)<!-- -->
 
 ``` r
 sim_p2
 ```
 
-![](README_files/figure-markdown_github/simpsons_paradox-2.png)
+![](README_files/figure-gfm/simpsons_paradox-2.png)<!-- -->
 
 ``` r
 sim_p3
 ```
 
-![](README_files/figure-markdown_github/simpsons_paradox-3.png)
+![](README_files/figure-gfm/simpsons_paradox-3.png)<!-- -->
+
+# For the lulz
+
+# Fishy
+
+``` r
+library(ggplot2)
+library(emoGG)
+library(dplyr)
+library(tadaatoolbox)
+library(viridis)
+
+ngo %>%
+  group_by(leistung, stunzahl) %>%
+  tally() %>%
+  ggplot(aes(x = leistung, y = stunzahl, size = n, fill = n)) +
+  geom_point(color = "black", shape = 21) +
+  add_emoji(emoji = "1f41f", x = 2.5, y = 25, ysize = 3) +
+  add_emoji(emoji = "1f41f", x = 6.5, y = 25, ysize = 3) +
+  add_emoji(emoji = "1f42c", x = 5, y = 20, ysize = 3) +
+  scale_fill_viridis(direction = 1, option = "C") +
+  scale_size(guide = F) +
+  theme_minimal()
+```
+
+![](README_files/figure-gfm/fishy-1.png)<!-- -->
