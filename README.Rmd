@@ -267,7 +267,7 @@ hell   <- round(cor(filter(qm, alter <= 28)$alter,
 
 qm %>%
   mutate(
-    alter_z = tadaatoolbox::z(alter),
+    alter_z = as.numeric(scale(alter)),
     Modellierbarkeit = ifelse(alter_z < 2, "fitted", "Ausreißer")
   ) %>%
   ggplot(aes(x = alter, y = beziehungen, alpha = Modellierbarkeit,
@@ -470,7 +470,7 @@ N     <- 100
 Sigma <- matrix(c(1,0.75,0.75, 1), 2, 2)*1.5
 means <- list(c(11,3), c(9,5), c(7,7), c(5,9), c(3,11))
 dat   <- lapply(means, function(mu) mvrnorm(N, mu, Sigma))
-dat   <- tbl_df(Reduce(rbind, dat)) %>%
+dat   <- as_tibble(Reduce(rbind, dat), .name_repair = "universal") %>%
   mutate(Z = as.character(rep(seq_along(means), each = N)))
 names(dat) <- c("X", "Y", "Z")
 
@@ -480,7 +480,7 @@ sim_p1 <- ggplot(dat, aes(X,Y)) +
   geom_smooth(method = lm, color = "red", se = FALSE)
 
 ## second plot
-means <- tbl_df(Reduce(rbind, means)) %>%
+means <- as_tibble(Reduce(rbind, means), .name_repair = "universal") %>%
   setNames(c("x","y")) %>%
   mutate(z = as.character(seq_along(means)))
 
@@ -505,16 +505,14 @@ sim_p3
 
 # For the lulz
 
-# Fishy
+## Fishy
 
 ```{r fishy, message=FALSE, error=FALSE}
 library(ggplot2)
 library(emoGG)
 library(dplyr)
-library(tadaatoolbox)
-library(viridis)
 
-ngo %>%
+tadaatoolbox::ngo %>%
   group_by(leistung, stunzahl) %>%
   tally() %>%
   ggplot(aes(x = leistung, y = stunzahl, size = n, fill = n)) +
@@ -522,7 +520,7 @@ ngo %>%
   add_emoji(emoji = "1f41f", x = 2.5, y = 25, ysize = 3) +
   add_emoji(emoji = "1f41f", x = 6.5, y = 25, ysize = 3) +
   add_emoji(emoji = "1f42c", x = 5, y = 20, ysize = 3) +
-  scale_fill_viridis(direction = 1, option = "C") +
+  scale_fill_viridis_c(direction = 1, option = "C") +
   scale_size(guide = F) +
   theme_minimal()
 ```

@@ -1,7 +1,7 @@
 Showcase
 ================
 Tadaa\!
-2018-07-04
+2020-03-07
 
 Here are a few plots useful for teaching.
 
@@ -25,6 +25,10 @@ ggplot(data = data, aes(x = groups, y = y)) +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 ```
+
+    ## Warning: `fun.ymin` is deprecated. Use `fun.min` instead.
+
+    ## Warning: `fun.ymax` is deprecated. Use `fun.max` instead.
 
 ![](README_files/figure-gfm/eta_groupmeans-1.png)<!-- -->
 
@@ -50,7 +54,7 @@ ggplot() +
   hrbrthemes::theme_ipsum(axis = FALSE, ticks = FALSE)
 ```
 
-    ## Warning: Removed 1 rows containing missing values (geom_path).
+    ## Warning: Removed 1 row(s) containing missing values (geom_path).
 
 ![](README_files/figure-gfm/litdig-1.png)<!-- -->
 
@@ -72,7 +76,7 @@ ggplot() +
   theme_classic()
 ```
 
-    ## Warning: Removed 1 rows containing missing values (geom_path).
+    ## Warning: Removed 1 row(s) containing missing values (geom_path).
 
 ![](README_files/figure-gfm/litdig-2.png)<!-- -->
 
@@ -158,6 +162,8 @@ ggplot(NULL, aes(q, y_noise)) +
   ) +
   theme_classic()
 ```
+
+    ## `geom_smooth()` using formula 'y ~ x'
 
 ![](README_files/figure-gfm/yerkes_dodson-1.png)<!-- -->
 
@@ -275,7 +281,7 @@ hell   <- round(cor(filter(qm, alter <= 28)$alter,
 
 qm %>%
   mutate(
-    alter_z = tadaatoolbox::z(alter),
+    alter_z = as.numeric(scale(alter)),
     Modellierbarkeit = ifelse(alter_z < 2, "fitted", "Ausreißer")
   ) %>%
   ggplot(aes(x = alter, y = beziehungen, alpha = Modellierbarkeit,
@@ -296,6 +302,9 @@ qm %>%
          ") und ohne Ausreißer (hell; r = ", hell, ")"),
        x = "Alter", y = "Beziehungen")
 ```
+
+    ## `geom_smooth()` using formula 'y ~ x'
+    ## `geom_smooth()` using formula 'y ~ x'
 
 ![](README_files/figure-gfm/reg_ausreisser-1.png)<!-- -->
 
@@ -338,9 +347,8 @@ rm(d1, d2, d3, d4, d5, d6)
 c(1:6,5:1) / sum(c(1:6,5:1))
 ```
 
-    ##  [1] 0.027777778 0.055555556 0.083333333 0.111111111 0.138888889
-    ##  [6] 0.166666667 0.138888889 0.111111111 0.083333333 0.055555556
-    ## [11] 0.027777778
+    ##  [1] 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667
+    ##  [7] 0.13888889 0.11111111 0.08333333 0.05555556 0.02777778
 
 ``` r
 ggplot(NULL, aes(x = w6_2)) +
@@ -476,6 +484,8 @@ ggplot(n, aes(x, y)) +
   theme_bw()
 ```
 
+    ## `geom_smooth()` using formula 'y ~ x'
+
 ![](README_files/figure-gfm/anscombquart-1.png)<!-- -->
 
 ## Simpson’s Paradox
@@ -492,8 +502,15 @@ N     <- 100
 Sigma <- matrix(c(1,0.75,0.75, 1), 2, 2)*1.5
 means <- list(c(11,3), c(9,5), c(7,7), c(5,9), c(3,11))
 dat   <- lapply(means, function(mu) mvrnorm(N, mu, Sigma))
-dat   <- tbl_df(Reduce(rbind, dat)) %>%
+dat   <- as_tibble(Reduce(rbind, dat), .name_repair = "universal") %>%
   mutate(Z = as.character(rep(seq_along(means), each = N)))
+```
+
+    ## New names:
+    ## * `` -> ...1
+    ## * `` -> ...2
+
+``` r
 names(dat) <- c("X", "Y", "Z")
 
 ## First plot
@@ -502,10 +519,16 @@ sim_p1 <- ggplot(dat, aes(X,Y)) +
   geom_smooth(method = lm, color = "red", se = FALSE)
 
 ## second plot
-means <- tbl_df(Reduce(rbind, means)) %>%
+means <- as_tibble(Reduce(rbind, means), .name_repair = "universal") %>%
   setNames(c("x","y")) %>%
   mutate(z = as.character(seq_along(means)))
+```
 
+    ## New names:
+    ## * `` -> ...1
+    ## * `` -> ...2
+
+``` r
 corrs <- dat %>% group_by(Z) %>% summarize(cor = cor(X,Y)) %>% .$cor
 
 sim_p2 <- ggplot(dat, aes(X, Y, color = Z)) +
@@ -522,6 +545,8 @@ sim_p3 <- sim_p2 +
 sim_p1
 ```
 
+    ## `geom_smooth()` using formula 'y ~ x'
+
 ![](README_files/figure-gfm/simpsons_paradox-1.png)<!-- -->
 
 ``` r
@@ -534,20 +559,20 @@ sim_p2
 sim_p3
 ```
 
+    ## `geom_smooth()` using formula 'y ~ x'
+
 ![](README_files/figure-gfm/simpsons_paradox-3.png)<!-- -->
 
 # For the lulz
 
-# Fishy
+## Fishy
 
 ``` r
 library(ggplot2)
 library(emoGG)
 library(dplyr)
-library(tadaatoolbox)
-library(viridis)
 
-ngo %>%
+tadaatoolbox::ngo %>%
   group_by(leistung, stunzahl) %>%
   tally() %>%
   ggplot(aes(x = leistung, y = stunzahl, size = n, fill = n)) +
@@ -555,7 +580,7 @@ ngo %>%
   add_emoji(emoji = "1f41f", x = 2.5, y = 25, ysize = 3) +
   add_emoji(emoji = "1f41f", x = 6.5, y = 25, ysize = 3) +
   add_emoji(emoji = "1f42c", x = 5, y = 20, ysize = 3) +
-  scale_fill_viridis(direction = 1, option = "C") +
+  scale_fill_viridis_c(direction = 1, option = "C") +
   scale_size(guide = F) +
   theme_minimal()
 ```
